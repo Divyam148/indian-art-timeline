@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unbroken Thread — A Timeline of Indian Art</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Cutive+Mono&display=swap');
+
+  :root{
+    --ink:        #1B2A44;
+    --ink-deep:   #131E30;
+    --parchment:  #EDE4CE;
+    --parchment-2:#E2D6B8;
+    --lac:        #A6314C;
+    --lac-dim:    #7C2438;
+    --turmeric:   #C9962B;
+    --turmeric-lt:#E4B655;
+    --peacock:    #0F6B5C;
+    --charcoal:   #241C15;
+    --cream-text: #F4EEDD;
+    --line-fine:  rgba(201,150,43,0.35);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--ink-deep);
+    background-image:
+      radial-gradient(ellipse at 20% -10%, rgba(201,150,43,0.10), transparent 45%),
+      radial-gradient(ellipse at 90% 110%, rgba(15,107,92,0.12), transparent 45%);
+    color: var(--cream-text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--turmeric); color: var(--ink-deep); }
+
+  .eyebrow{
+    font-family:'Cutive Mono', monospace;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-size:11px;
+    color: var(--turmeric-lt);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding: 68px 6vw 54px;
+    overflow:hidden;
+    border-bottom: 1px solid var(--line-fine);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(115deg, transparent 0 38px, rgba(201,150,43,0.045) 38px 39px);
+    pointer-events:none;
+  }
+  .hero-inner{ max-width: 980px; position:relative; }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size: clamp(2.4rem, 5vw, 4.4rem);
+    line-height: 1.02;
+    margin: 18px 0 20px;
+    color: var(--cream-text);
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    color: var(--turmeric-lt);
+  }
+  .hero p.lede{
+    font-size: 1.08rem;
+    line-height:1.6;
+    max-width: 620px;
+    color: rgba(244,238,221,0.78);
+    margin: 0 0 30px;
+  }
+  .hero-meta{
+    display:flex; gap:28px; flex-wrap:wrap;
+    font-family:'Cutive Mono', monospace;
+    font-size:12px; letter-spacing:0.04em;
+    color: rgba(244,238,221,0.55);
+  }
+  .hero-meta b{ color: var(--turmeric-lt); font-weight:400; }
+
+  /* ---------- THE THREAD (progress rail) ---------- */
+  .thread-wrap{
+    position: sticky; top:0; z-index: 50;
+    background: linear-gradient(180deg, var(--ink-deep) 70%, rgba(19,30,48,0));
+    padding: 14px 6vw 10px;
+  }
+  .thread-track{
+    position:relative;
+    height: 3px;
+    background: rgba(237,228,206,0.14);
+    border-radius: 3px;
+  }
+  .thread-fill{
+    position:absolute; left:0; top:0; height:100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--lac), var(--turmeric));
+    border-radius: 3px;
+    transition: width 0.15s linear;
+  }
+  .thread-labels{
+    display:flex; justify-content:space-between;
+    margin-top:8px;
+    font-family:'Cutive Mono', monospace;
+    font-size: 10px;
+    color: rgba(244,238,221,0.4);
+    letter-spacing: 0.05em;
+  }
+  .thread-labels span{ cursor:pointer; transition: color 0.2s; }
+  .thread-labels span.active{ color: var(--turmeric-lt); }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{
+    position:relative;
+    max-width: 1180px;
+    margin: 20px auto 0;
+    padding: 40px 6vw 120px;
+  }
+  .spine{
+    position:absolute;
+    left: 50%;
+    top: 0; bottom: 90px;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, transparent, var(--line-fine) 4%, var(--line-fine) 96%, transparent);
+  }
+  .spine::before{
+    content:"";
+    position:absolute; left:50%; top:-6px; transform:translateX(-50%);
+    width:11px; height:11px; border-radius:50%;
+    background: var(--turmeric);
+    box-shadow: 0 0 0 4px rgba(201,150,43,0.18);
+  }
+
+  .era{
+    position:relative;
+    display:grid;
+    grid-template-columns: 1fr 46px 1fr;
+    align-items:start;
+    margin-bottom: 86px;
+  }
+  .era:last-child{ margin-bottom: 0; }
+  .era-node{
+    grid-column:2;
+    display:flex; align-items:center; justify-content:center;
+    padding-top: 6px;
+  }
+  .era-node .dot{
+    width: 15px; height:15px; border-radius:50%;
+    background: var(--ink-deep);
+    border: 2px solid var(--turmeric);
+    position:relative; z-index:2;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .era.visible .era-node .dot{
+    background: var(--lac);
+    transform: scale(1.15);
+  }
+
+  .era-card{
+    grid-column: 1;
+    justify-self: end;
+    text-align: right;
+    max-width: 460px;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .era:nth-child(even) .era-card{
+    grid-column: 3;
+    justify-self: start;
+    text-align: left;
+  }
+  .era.visible .era-card{ opacity:1; transform: translateY(0); }
+
+  .era-year{
+    font-family:'Fraunces', serif;
+    font-weight:600; font-style:italic;
+    font-size: 1.9rem;
+    color: var(--turmeric-lt);
+    margin-bottom:4px;
+  }
+  .era-title{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size: 1.28rem;
+    color: var(--cream-text);
+    margin-bottom: 10px;
+    line-height:1.2;
+  }
+  .era-desc{
+    font-size: 0.94rem;
+    line-height:1.6;
+    color: rgba(244,238,221,0.68);
+    margin-bottom: 18px;
+  }
+
+  /* artifact card */
+  .artifact-card{
+    display:inline-flex;
+    gap:14px;
+    align-items:center;
+    background: linear-gradient(155deg, var(--parchment), var(--parchment-2));
+    color: var(--charcoal);
+    border-radius: 3px;
+    padding: 14px 18px 14px 14px;
+    cursor: pointer;
+    border: 1px solid rgba(36,28,21,0.12);
+    box-shadow: 0 10px 24px -14px rgba(0,0,0,0.55);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    max-width: 100%;
+  }
+  .era-card:not(.right) .artifact-card{ flex-direction: row-reverse; }
+  .era:nth-child(odd) .artifact-card{ flex-direction: row-reverse; }
+  .artifact-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 16px 30px -14px rgba(0,0,0,0.65);
+  }
+  .artifact-icon{
+    flex: 0 0 auto;
+    width: 54px; height: 54px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .artifact-icon svg{ width:100%; height:100%; }
+  .artifact-text{ min-width:0; }
+  .artifact-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 0.98rem;
+    line-height:1.25;
+  }
+  .artifact-sub{
+    font-family:'Cutive Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color: var(--lac-dim);
+    margin-top:3px;
+  }
+
+  /* ---------- MODAL ---------- */
+  .overlay{
+    position: fixed; inset:0;
+    background: rgba(10,15,24,0.72);
+    backdrop-filter: blur(3px);
+    display:flex; align-items:center; justify-content:center;
+    padding: 24px;
+    z-index: 200;
+    opacity:0; pointer-events:none;
+    transition: opacity 0.28s ease;
+  }
+  .overlay.open{ opacity:1; pointer-events:auto; }
+  .modal{
+    background: linear-gradient(165deg, var(--parchment), var(--parchment-2));
+    color: var(--charcoal);
+    max-width: 640px; width:100%;
+    max-height: 85vh;
+    overflow-y:auto;
+    border-radius: 4px;
+    padding: 0;
+    transform: translateY(24px) scale(0.98);
+    transition: transform 0.32s cubic-bezier(.2,.8,.25,1);
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+  }
+  .overlay.open .modal{ transform: translateY(0) scale(1); }
+  .modal-top{
+    background: var(--ink);
+    color: var(--cream-text);
+    padding: 30px 32px 26px;
+    position:relative;
+  }
+  .modal-icon{ width:76px; height:76px; margin-bottom:14px; }
+  .modal-icon svg{ width:100%; height:100%; }
+  .modal-eyebrow{
+    font-family:'Cutive Mono', monospace;
+    font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color: var(--turmeric-lt);
+    margin-bottom:8px;
+  }
+  .modal-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 1.7rem;
+    line-height:1.15;
+  }
+  .modal-close{
+    position:absolute; top:22px; right:24px;
+    width:34px; height:34px;
+    border-radius:50%;
+    background: rgba(244,238,221,0.08);
+    border:1px solid rgba(244,238,221,0.25);
+    color: var(--cream-text);
+    font-size: 18px; line-height:1;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover{ background: rgba(244,238,221,0.18); }
+
+  .modal-body{ padding: 26px 32px 32px; }
+  .modal-meta-row{
+    display:flex; flex-wrap:wrap; gap: 10px 26px;
+    font-family:'Cutive Mono', monospace;
+    font-size: 11px;
+    letter-spacing:0.03em;
+    color: var(--lac-dim);
+    text-transform:uppercase;
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed rgba(36,28,21,0.25);
+  }
+  .modal-meta-row div span{ display:block; color: var(--charcoal); text-transform:none; font-family:'Source Serif 4',serif; font-size:13px; margin-top:2px; }
+  .modal-section{ margin-bottom: 20px; }
+  .modal-section:last-child{ margin-bottom:0; }
+  .modal-section h4{
+    font-family:'Fraunces', serif;
+    font-style:italic; font-weight:500;
+    font-size: 1rem;
+    color: var(--peacock);
+    margin: 0 0 8px;
+  }
+  .modal-section p{
+    font-size: 0.96rem;
+    line-height: 1.65;
+    margin:0;
+    color: rgba(36,28,21,0.88);
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    text-align:center;
+    padding: 50px 6vw 60px;
+    font-family:'Cutive Mono', monospace;
+    font-size: 11px;
+    letter-spacing:0.05em;
+    color: rgba(244,238,221,0.35);
+    border-top: 1px solid var(--line-fine);
+  }
+
+  @media (max-width: 760px){
+    .timeline{ padding: 20px 5vw 100px; }
+    .spine{ left: 22px; }
+    .spine::before{ left:22px; }
+    .era{ grid-template-columns: 44px 1fr; }
+    .era-node{ grid-column:1; padding-top:4px; }
+    .era-card, .era:nth-child(even) .era-card{
+      grid-column: 2; justify-self:start; text-align:left; max-width:100%;
+    }
+    .era:nth-child(odd) .artifact-card,
+    .era-card:not(.right) .artifact-card{ flex-direction:row; }
+    .hero{ padding: 48px 5vw 40px; }
+    .hero-meta{ gap:16px; }
+    .modal-top,.modal-body{ padding-left:22px; padding-right:22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">CO1 · Interactive Timeline with Artifacts</div>
+    <h1>The Unbroken <em>Thread</em><br>of Indian Art</h1>
+    <p class="lede">From the bronze workshops of Mohenjo-daro to the canvases of independent India — nine artifacts, four and a half thousand years, one continuous line of craft. Click any piece to step closer.</p>
+    <div class="hero-meta">
+      <span><b>Span</b> c. 2600 BCE – 1950 CE</span>
+      <span><b>Artifacts</b> 9</span>
+      <span><b>Eras</b> 9</span>
+    </div>
+  </div>
+</header>
+
+<div class="thread-wrap">
+  <div class="thread-track"><div class="thread-fill" id="threadFill"></div></div>
+  <div class="thread-labels" id="threadLabels"></div>
+</div>
+
+<div class="timeline" id="timeline">
+  <div class="spine"></div>
+</div>
+
+<div class="footer">Built for the Interactive Timeline &amp; Artifacts assignment · illustrations are stylised interpretations, not photographic reproductions</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+const DATA = [
+  {
+    id:"indus",
+    year:"c. 2600–1900 BCE",
+    era:"Indus Valley Civilization",
+    eraDesc:"The earliest urban culture of the subcontinent, spread across Mohenjo-daro and Harappa, left behind a compact but astonishing body of sculpture in stone, bronze and terracotta.",
+    name:"The Dancing Girl",
+    sub:"Bronze figurine · Mohenjo-daro",
+    location:"National Museum, New Delhi",
+    medium:"Lost-wax cast bronze, 10.5 cm",
+    period:"c. 2500 BCE",
+    context:"Cast using the lost-wax method, this 10.5cm figure of a young woman standing in a confident, hip-shot pose is one of the oldest known bronze sculptures from South Asia. Her arm is stacked with bangles and her head tilted with an unmistakable sense of attitude.",
+    significance:"It overturned assumptions that Bronze Age Indian art was purely functional or religious — here is a secular, individual human moment, cast in metal, over 4,500 years ago. It also confirms sophisticated metallurgical knowledge in the Indus cities well before comparable techniques appear elsewhere.",
+    icon:"dancer"
+  },
+  {
+    id:"mauryan",
+    year:"c. 250 BCE",
+    era:"Mauryan Empire",
+    eraDesc:"Under Ashoka, state-sponsored art moved to a monumental, polished-stone idiom used to broadcast imperial and moral authority across the empire.",
+    name:"Lion Capital of Ashoka",
+    sub:"Polished sandstone · Sarnath",
+    location:"Sarnath Museum, Uttar Pradesh",
+    medium:"Chunar sandstone, mirror-polished",
+    period:"c. 250 BCE",
+    context:"Commissioned by Emperor Ashoka to crown a pillar at Sarnath — the site of the Buddha's first sermon — this capital shows four addorsed lions atop a drum carved with a horse, bull, elephant and lion, separated by dharma wheels, resting on an inverted lotus.",
+    significance:"Adopted as independent India's national emblem in 1950, it marks the birth of a distinctly Mauryan monumental style: the famous 'Mauryan polish' gave stone a glass-like sheen unmatched until much later periods, signalling both technical mastery and imperial reach.",
+    icon:"pillar"
+  },
+  {
+    id:"gupta",
+    year:"c. 400–600 CE",
+    era:"Gupta Period",
+    eraDesc:"Often called India's 'classical age', Gupta patronage produced the idealised human form and the great narrative mural cycles of the Deccan cave temples.",
+    name:"Padmapani, Ajanta Cave 1",
+    sub:"Mural painting · Ajanta Caves",
+    location:"Cave 1, Ajanta, Maharashtra (in situ)",
+    medium:"Tempera on rock-cut plaster",
+    period:"c. 475–500 CE",
+    context:"Painted on the wall of a rock-cut monastery, this mural depicts the Bodhisattva Padmapani ('lotus-bearer') with downcast, meditative eyes and a jewelled crown, rendered in mineral pigments over a lime-plaster ground built up in several layers.",
+    significance:"The Ajanta murals set the visual grammar for Buddhist art across Asia — their fluid line and psychological interiority influenced painting traditions from Sri Lanka to Central Asia and China along trade and pilgrimage routes.",
+    icon:"mural"
+  },
+  {
+    id:"chola",
+    year:"c. 900–1250 CE",
+    era:"Chola Dynasty",
+    eraDesc:"South Indian temple culture under the Cholas produced the lost-wax bronze tradition's supreme achievement: the dancing figures of Shiva.",
+    name:"Nataraja",
+    sub:"Bronze icon · Tamil Nadu",
+    location:"Various — notably Government Museum, Chennai",
+    medium:"Lost-wax cast bronze",
+    period:"c. 950–1100 CE",
+    context:"Shiva is shown as Lord of Dance, encircled by a ring of flame, one foot raised, the other pressing down the dwarf of ignorance, hair flying outward with the force of motion — a single frozen instant of cosmic rhythm rendered in cast metal.",
+    significance:"The Nataraja form fixed a philosophical idea — the cycle of creation, preservation and destruction — into a sculptural formula so precise it is still cast by the same guild lineages in Tamil Nadu today, over a thousand years later.",
+    icon:"nataraja"
+  },
+  {
+    id:"mughal",
+    year:"c. 1560–1650 CE",
+    era:"Mughal Period",
+    eraDesc:"Persian court painting fused with Indian colour and observation under Akbar, Jahangir and Shah Jahan to create the Mughal miniature — part portraiture, part chronicle.",
+    name:"Akbarnama Folio",
+    sub:"Miniature painting · Mughal court atelier",
+    location:"Victoria & Albert Museum, London",
+    medium:"Opaque watercolour and gold on paper",
+    period:"c. 1590–1595 CE",
+    context:"Produced by the royal karkhana (workshop) as part of the illustrated chronicle of Akbar's reign, folios like this combine multiple specialist hands — one artist for composition, another for faces, another for colour — finished with burnished gold detailing.",
+    significance:"The Akbarnama workshops institutionalised painting as collaborative, documentary state art, and trained a generation of painters whose hybrid Perso-Indian style became the template for court painting across Rajasthan and the Deccan for two centuries.",
+    icon:"miniature"
+  },
+  {
+    id:"pahari",
+    year:"c. 1700–1800 CE",
+    era:"Rajput & Pahari Painting",
+    eraDesc:"As Mughal centralised patronage weakened, regional Rajasthani and Himalayan (Pahari) courts developed their own lyrical, emotionally charged painting schools.",
+    name:"Ragamala Painting",
+    sub:"Kangra school miniature",
+    location:"Various collections; notably National Museum, New Delhi",
+    medium:"Natural pigment on paper",
+    period:"c. 1780 CE",
+    context:"'Garland of melodies' — each folio in a Ragamala set visualises a musical raga as a mood, season and often a lover's longing, painted in the soft, naturalistic Kangra idiom of rolling hills, flowering trees and luminous skies.",
+    significance:"Ragamala painting is one of the few traditions to systematically translate sound into image, treating music, poetry and painting as a single unified language — a synaesthetic ambition rarely attempted this fully elsewhere in world art.",
+    icon:"raga"
+  },
+  {
+    id:"company",
+    year:"c. 1770–1850 CE",
+    era:"Company School",
+    eraDesc:"Indian artists, newly working for British patrons, adapted traditional miniature technique to European taste for natural-history and topographical documentation.",
+    name:"Company Natural History Study",
+    sub:"Botanical / zoological illustration",
+    location:"British Library & V&A collections, London",
+    medium:"Watercolour on European paper",
+    period:"c. 1800–1820 CE",
+    context:"Commissioned by East India Company officials such as Lady Impey, local artists trained in Mughal miniature technique applied their precision to specimens of birds, plants and animals — often painted life-size, on imported English paper, for scientific record.",
+    significance:"The Company School is a hinge-point where indigenous technique met colonial demand, producing a hybrid visual archive that inadvertently preserved extraordinary botanical and zoological detail — and set the stage for the stylistic ruptures of the modern period.",
+    icon:"botanical"
+  },
+  {
+    id:"bengal",
+    year:"c. 1905 CE",
+    era:"Bengal School / Swadeshi Art",
+    eraDesc:"In direct response to colonial academic realism, Abanindranath Tagore and the Bengal School sought a self-consciously 'Indian' modern art rooted in Mughal and Ajanta idioms.",
+    name:"Bharat Mata",
+    sub:"Painting by Abanindranath Tagore",
+    location:"Rabindra Bharati Society, Kolkata",
+    medium:"Wash technique on paper",
+    period:"1905 CE",
+    context:"Painted the same year as the Partition of Bengal, this small watercolour personifies the nation as a saffron-robed, four-armed goddess offering food, cloth, learning and spiritual solace — deliberately rendered in a soft wash technique that rejected European oil-painting realism.",
+    significance:"It became the single most reproduced image of the early nationalist movement, and its wash technique — influenced by Japanese painters visiting Calcutta — launched the Bengal School's project of building a modern art vocabulary independent of colonial academies.",
+    icon:"bharatmata"
+  },
+  {
+    id:"modern",
+    year:"1947–1950s",
+    era:"Independent India / Progressive Artists' Group",
+    eraDesc:"At the moment of independence, a new generation broke from both colonial academicism and revivalist nationalism to engage international modernism on their own terms.",
+    name:"Progressive Artists' Group — Founding Works",
+    sub:"F.N. Souza, M.F. Husain, S.H. Raza and peers",
+    location:"Works held across NGMA New Delhi/Mumbai & private collections",
+    medium:"Oil on canvas",
+    period:"Founded Bombay, 1947",
+    context:"Formed in Bombay in the very year of independence, the Progressive Artists' Group deliberately abandoned both the Bengal School's revivalism and colonial realism, absorbing Cubism and Expressionism to paint bold, urgent, distinctly post-colonial modern works.",
+    significance:"The Group set the direction for Indian modern art for the rest of the century, and its members — Husain, Souza, Raza, Gaitonde, Ara and others — remain the most internationally recognised and highest-valued Indian artists of the modern era.",
+    icon:"modern"
+  }
+];
+
+const ICONS = {
+  dancer: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><g stroke="#C9962B" stroke-width="2" fill="none" stroke-linecap="round"><circle cx="32" cy="16" r="5" fill="#C9962B" stroke="none"/><path d="M32 21 L32 38"/><path d="M32 24 L20 30"/><path d="M32 24 L44 20"/><path d="M32 38 L22 52"/><path d="M32 38 L40 50"/><circle cx="20" cy="30" r="2" fill="#E4B655" stroke="none"/></g></svg>`,
+  pillar: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><g stroke="#C9962B" stroke-width="2" fill="none"><path d="M18 44 h28"/><path d="M20 44 V22"/><path d="M44 44 V22"/><ellipse cx="32" cy="20" rx="14" ry="5"/><path d="M22 18 q10 -8 20 0"/><circle cx="24" cy="16" r="2" fill="#E4B655" stroke="none"/><circle cx="40" cy="16" r="2" fill="#E4B655" stroke="none"/></g></svg>`,
+  mural: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><g stroke="#C9962B" stroke-width="2" fill="none" stroke-linecap="round"><path d="M32 16 q-10 6 -8 18 q1 8 8 10 q7 -2 8 -10 q2 -12 -8 -18 Z"/><path d="M24 34 q8 4 16 0"/><circle cx="32" cy="24" r="3" fill="#E4B655" stroke="none"/></g></svg>`,
+  nataraja: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><circle cx="32" cy="32" r="19" fill="none" stroke="#C9962B" stroke-width="1.4" stroke-dasharray="2 3"/><g stroke="#E4B655" stroke-width="2" fill="none" stroke-linecap="round"><circle cx="32" cy="22" r="4" fill="#E4B655" stroke="none"/><path d="M32 26 L32 36"/><path d="M32 28 L20 22"/><path d="M32 28 L46 30"/><path d="M32 36 L24 30"/><path d="M32 36 L42 46"/></g></svg>`,
+  miniature: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><rect x="16" y="14" width="32" height="36" rx="1" fill="none" stroke="#C9962B" stroke-width="2"/><rect x="20" y="18" width="24" height="28" fill="none" stroke="#E4B655" stroke-width="1.2"/><circle cx="32" cy="28" r="4" fill="#E4B655"/><path d="M22 40 q10 -8 20 0" stroke="#C9962B" stroke-width="1.4" fill="none"/></svg>`,
+  raga: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><path d="M14 40 q18 -26 36 0" fill="none" stroke="#C9962B" stroke-width="2"/><circle cx="46" cy="20" r="6" fill="#E4B655"/><path d="M14 44 q18 6 36 0" fill="none" stroke="#0F6B5C" stroke-width="2"/></svg>`,
+  botanical: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><g stroke="#0F6B5C" stroke-width="2" fill="none" stroke-linecap="round"><path d="M32 48 V20"/><path d="M32 34 q-12 -2 -14 -14 q12 0 14 14"/><path d="M32 26 q12 -2 14 -14 q-12 0 -14 14"/></g><circle cx="32" cy="18" r="3" fill="#E4B655"/></svg>`,
+  bharatmata: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><g stroke="#A6314C" stroke-width="2" fill="none" stroke-linecap="round"><circle cx="32" cy="20" r="6"/><path d="M32 26 V44"/><path d="M20 32 H44"/><path d="M22 44 L18 50"/><path d="M42 44 L46 50"/></g><circle cx="32" cy="20" r="1.6" fill="#E4B655" stroke="none"/></svg>`,
+  modern: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1B2A44"/><g stroke="#C9962B" stroke-width="2" fill="none" stroke-linejoin="round"><path d="M18 44 L28 20 L34 34 L40 18 L48 44 Z"/></g><circle cx="28" cy="20" r="1.6" fill="#E4B655" stroke="none"/></svg>`
+};
+
+const timeline = document.getElementById('timeline');
+const threadLabels = document.getElementById('threadLabels');
+
+DATA.forEach((d, i) => {
+  const era = document.createElement('div');
+  era.className = 'era';
+  era.dataset.index = i;
+  era.innerHTML = `
+    <div class="era-card">
+      <div class="era-year">${d.year}</div>
+      <div class="era-title">${d.era}</div>
+      <div class="era-desc">${d.eraDesc}</div>
+      <div class="artifact-card" data-id="${d.id}">
+        <div class="artifact-icon">${ICONS[d.icon]}</div>
+        <div class="artifact-text">
+          <div class="artifact-name">${d.name}</div>
+          <div class="artifact-sub">${d.sub}</div>
+        </div>
+      </div>
+    </div>
+    <div class="era-node"><div class="dot"></div></div>
+    <div></div>
+  `;
+  timeline.appendChild(era);
+
+  const lbl = document.createElement('span');
+  lbl.textContent = d.year.replace(/c\.\s?/,'').split(/[–-]/)[0].replace(' BCE','B').replace(' CE','');
+  lbl.dataset.index = i;
+  lbl.addEventListener('click', () => {
+    document.querySelectorAll('.era')[i].scrollIntoView({behavior:'smooth', block:'center'});
+  });
+  threadLabels.appendChild(lbl);
+});
+
+// modal
+const overlay = document.getElementById('overlay');
+const modal = document.getElementById('modal');
+
+function openModal(d){
+  modal.innerHTML = `
+    <div class="modal-top">
+      <button class="modal-close" id="closeBtn" aria-label="Close">&times;</button>
+      <div class="modal-icon">${ICONS[d.icon]}</div>
+      <div class="modal-eyebrow">${d.era}</div>
+      <div class="modal-title">${d.name}</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta-row">
+        <div>Location<span>${d.location}</span></div>
+        <div>Medium<span>${d.medium}</span></div>
+        <div>Dated<span>${d.period}</span></div>
+      </div>
+      <div class="modal-section">
+        <h4>Historical context</h4>
+        <p>${d.context}</p>
+      </div>
+      <div class="modal-section">
+        <h4>Why it matters</h4>
+        <p>${d.significance}</p>
+      </div>
+    </div>
+  `;
+  overlay.classList.add('open');
+  document.getElementById('closeBtn').addEventListener('click', closeModal);
+}
+function closeModal(){ overlay.classList.remove('open'); }
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.artifact-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const d = DATA.find(x => x.id === card.dataset.id);
+    openModal(d);
+  });
+});
+
+// scroll reveal + progress thread
+const eras = document.querySelectorAll('.era');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => {
+    if(en.isIntersecting) en.target.classList.add('visible');
+  });
+}, {threshold:0.3});
+eras.forEach(e => io.observe(e));
+
+function updateThread(){
+  const doc = document.documentElement;
+  const scrollTop = window.scrollY;
+  const max = doc.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.max(0, (scrollTop / max) * 100));
+  document.getElementById('threadFill').style.width = pct + '%';
+
+  let activeIdx = 0;
+  eras.forEach((e,i) => {
+    const rect = e.getBoundingClientRect();
+    if(rect.top < window.innerHeight * 0.5) activeIdx = i;
+  });
+  document.querySelectorAll('.thread-labels span').forEach((s,i) => {
+    s.classList.toggle('active', i === activeIdx);
+  });
+}
+window.addEventListener('scroll', updateThread);
+updateThread();
+</script>
+</body>
+</html>
